@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to MyWedSpace</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Quicksand"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/index.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <h2>MyWedSpace</h2>
+      <nav>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Signup</a></li>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div
+        class="background-image"
+        style="
+          background-image: url(https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        "
+      ></div>
+      <div class="overlay"></div>
+      <!-- Added overlay div -->
+      <div class="hero-content-area">
+        <h1>MyWedSpace</h1>
+        <h3>Find your perfect venue for the perfect day!</h3>
+        <a href="#" class="btn">Book Now!</a>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h3 class="title">Join our newsletter</h3>
+      <p>Information will go here(if any)</p>
+      <hr />
+      <form>
+        <input type="email" placeholder="Email" />
+        <a href="#" class="btn">Subscribe now</a>
+      </form>
+    </section>
+
+    <footer>
+      <ul>
+        <li>
+          <a href="#"><i class="fa fa-twitter-square"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-facebook-square"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-snapchat-square"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-pinterest-square"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-github-square"></i></a>
+        </li>
+      </ul>
+      <p>Made by Pardeep Singh</p>
+      <p>No attribution required. You can remove this footer.</p>
+    </footer>
   </body>
 </html>
