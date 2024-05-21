@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="stylesheets/signup.css" />
+    <title>Signup | MyWedSpace</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>Sign Up</h1>
+        <form action="/user/register" method="POST">
+          <div class="user">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              placeholder="Full Name"
+              required
+            />
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="username"
+              required
+            />
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email Address"
+              required
+            />
+            <i class="fas fa-phone"></i>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="Phone Number"
+              required
+            />
+            <i class="fas fa-calendar-alt"></i>
+            <input
+              type="date"
+              name="dateOfBirth"
+              id="dateOfBirth"
+              placeholder="Date of Birth"
+              required
+            />
+            <!-- <i class="fas fa-image"></i>
+            <input
+              type="file"
+              name="profilePic"
+              id="profilePic"
+              placeholder="Profile Picture"
+            /> -->
+            <i class="fas fa-user-tag"></i>
+            <select name="role" id="role" required>
+              <option value="" disabled selected>Select Role</option>
+              <option value="customer">Customer</option>
+              <option value="hall owner">Hall Owner</option>
+            </select>
+            <i class="fas fa-unlock-alt"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="login-btn">
+            <button type="submit" class="btn">Submit</button>
+            <p class="signup">
+              Already have an account? <a href="/login"><span>Log In</span></a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

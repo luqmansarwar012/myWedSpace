@@ -6,7 +6,9 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-
+const expressSession = require("express-session");
+const passport = require("passport");
+const userModel = require("./models/user");
 const app = express();
 
 // MongoDB Connection
@@ -15,6 +17,21 @@ mongoose.connect("mongodb://0.0.0.0:27017/myWedSpace");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// setting up session
+app.use(
+  expressSession({
+    resave: false,
+    saveUninitialized: false,
+    secret: "mySessionKey",
+  })
+);
+
+// setting up passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
 app.use(logger("dev"));
 app.use(express.json());

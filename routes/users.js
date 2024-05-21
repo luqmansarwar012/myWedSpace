@@ -1,26 +1,33 @@
 var express = require("express");
 const userModel = require("../models/user");
 var router = express.Router();
+const upload = require("./multer");
+const passport = require("passport");
 
 // Register route
-router.post("/signup", async (req, res, next) => {
+router.post("/register", async (req, res) => {
   try {
-    // Create user data object
+    // if (!req.file) {
+    //   return res.status(400).send("no files were sent");
+    // }
+    const { username, email, phone, dateOfBirth, password, role } = req.body;
+    console.log(password);
     const userData = new userModel({
-      username: "dummy username",
-      email: "dummy email",
-      fullname: "dummy fullname",
+      username,
+      email,
+      phone,
+      dateOfBirth,
+      // profilePic: req.file.filename,
+      role,
     });
-
-    // Register user (assuming a pre-save hook to hash password)
-    const savedUser = await userData.save();
-
-    // Respond with the user object (excluding sensitive information)
-    res.status(201).json({
-      savedUser,
+    console.log(userData);
+    await userModel.register(userData, password).then(function () {
+      passport.authenticate("local")(req, res, function () {
+        res.redirect("/");
+      });
     });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 });
 
