@@ -9,6 +9,7 @@ const usersRouter = require("./routes/users");
 const expressSession = require("express-session");
 const passport = require("passport");
 const userModel = require("./models/user");
+const flash = require("connect-flash");
 const app = express();
 
 // MongoDB Connection
@@ -17,6 +18,8 @@ mongoose.connect("mongodb://0.0.0.0:27017/myWedSpace");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use(flash());
 
 // setting up session
 app.use(

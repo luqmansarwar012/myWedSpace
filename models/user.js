@@ -5,6 +5,10 @@ const plm = require("passport-local-mongoose");
 const { UserRole } = require("../enums");
 
 const userSchema = new Schema({
+  fullname: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
@@ -23,17 +27,13 @@ const userSchema = new Schema({
     unique: true,
     trim: true,
   },
-  dateOfBirth: {
-    type: Date,
-    required: true,
-  },
-  profilePic: {
-    type: String,
-  },
   role: {
     type: String,
     enum: [UserRole.CUSTOMER, UserRole.HALL_OWNER],
     required: true,
+  },
+  password: {
+    type: String,
   },
 });
 userSchema.plugin(plm);

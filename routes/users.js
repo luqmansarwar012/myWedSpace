@@ -7,23 +7,18 @@ const passport = require("passport");
 // Register route
 router.post("/register", async (req, res) => {
   try {
-    // if (!req.file) {
-    //   return res.status(400).send("no files were sent");
-    // }
-    const { username, email, phone, dateOfBirth, password, role } = req.body;
-    console.log(password);
+    const { fullname, username, email, phone, password, role } = req.body;
     const userData = new userModel({
+      fullname,
       username,
       email,
+      password,
       phone,
-      dateOfBirth,
-      // profilePic: req.file.filename,
       role,
     });
-    console.log(userData);
     await userModel.register(userData, password).then(function () {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/");
+        res.redirect("/dashboard");
       });
     });
   } catch (error) {

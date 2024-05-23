@@ -18,16 +18,16 @@
     </div>
 
     <!-- Form -->
-    <div id="form-container">
+    <form id="form-container" action="/login" method="POST">
       <h1 class="title">Sign in</h1>
       <div class="label">Username</div>
-      <input type="text" />
+      <input type="text" name="username" />
       <div class="label">Password</div>
-      <input type="password" />
-      <input type="button" class="submit" value="Sign in" />
+      <input type="password" name="password" />
+      <button type="submit" class="submit" id="signin-btn">Sign in</button>
       <div class="label msg">
         ◆ You don't have an account? <a href="/signup">Sign up</a>
       </div>
-    </div>
+    </form>
   </body>
 </html>
