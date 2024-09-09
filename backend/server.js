@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
+import ownerRouter from "./routes/ownerRoute.js";
 import dotenv from "dotenv";
 dotenv.config();
 // App config
@@ -24,6 +25,9 @@ connectDB();
 app.get("/", (req, res) => {
   res.json("Hello");
 });
+
+//Owner endpoints
+app.use("/api/v1/owner/", ownerRouter);
 
 // Running express server
 app.listen(port, () => {
