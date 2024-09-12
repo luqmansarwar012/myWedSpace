@@ -46,10 +46,43 @@ const signup = async (req, res) => {
     const createdOwner = await user.save();
     // creating jwt token
     const token = createJwtToken(createdOwner._id);
-    res.json({ success: true, message: "Account created!", token });
+    res.status(200).json({ success: true, message: "Account created!", token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Something went wrong" });
   }
 };
-export { signup };
+
+// login logic
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (!validator.isEmail(email)) {
+      return res.json({
+        success: false,
+        message: "Please enter a valid email!",
+      });
+    }
+    const owner = await ownerModel.findOne({ email });
+    if (!owner) {
+      return res
+        .status(404)
+        .json({ success: false, message: "owner doesn't exists!" });
+    }
+    const isMatch = await bcrypt.compare(password, owner.password);
+    if (!isMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid Credentials!" });
+    }
+    // creating jwt token
+    const token = createJwtToken(owner._id);
+    res
+      .status(200)
+      .json({ success: true, message: "Logged in!", token, role: owner.role });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
+  }
+};
+export { signup, login };
