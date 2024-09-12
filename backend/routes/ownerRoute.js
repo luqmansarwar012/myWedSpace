@@ -4,6 +4,6 @@ import { signup } from "../controllers/ownerController.js";
 const ownerRouter = express.Router();
 
 // owner signup
-ownerRouter.get("/signup", signup);
+ownerRouter.post("/signup", signup);
 
 export default ownerRouter;

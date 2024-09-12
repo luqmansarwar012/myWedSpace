@@ -6,7 +6,7 @@ const ownerSchema = new mongoose.Schema(
     role: { type: String, default: "owner" },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    hallIds: [{ type: Schema.Types.ObjectId, ref: "Hall" }],
+    hallIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Hall" }],
   },
   { minimize: false }
 );
