@@ -6,8 +6,13 @@ import dotenv from "dotenv";
 dotenv.config();
 import { ROLES } from "../constants.js";
 
-const createJwtToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+const createJwtToken = (user) => {
+  const payload = {
+    id: user._id,
+    name: user.name,
+    role: user.role,
+  };
+  return jwt.sign(payload, process.env.JWT_SECRET);
 };
 const signup = async (req, res) => {
   // signup logic
@@ -85,10 +90,8 @@ const login = async (req, res) => {
         .json({ success: false, message: "Invalid Credentials!" });
     }
     // creating jwt token
-    const token = createJwtToken(user._id);
-    res
-      .status(200)
-      .json({ success: true, message: "Logged in!", token, role: user.role });
+    const token = createJwtToken(user);
+    res.status(200).json({ success: true, message: "Logged in!", token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Something went wrong!" });
