@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
 
-const ownerSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    role: { type: String, default: "owner" },
+    role: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     hallIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Hall" }],
+    orderIds: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
   },
   { minimize: false }
 );
 
-const ownerModel = mongoose.model("Owner", ownerSchema);
+const userModel = mongoose.model("User", userSchema);
 
-export default ownerModel;
+export default userModel;
