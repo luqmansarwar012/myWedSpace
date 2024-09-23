@@ -5,7 +5,11 @@ const hallSchema = new mongoose.Schema(
     name: { type: String, required: true },
     location: { type: String, required: true },
     capacity: { type: Number, required: true },
-    status: { type: String, enum: Object.values(HALL_STATUS) },
+    status: {
+      type: String,
+      enum: Object.values(HALL_STATUS),
+      default: HALL_STATUS.AVAILABLE,
+    },
   },
   { minimize: false }
 );

@@ -1,10 +1,9 @@
-module.exports = {
-  HALL_STATUS: {
-    BOOKED: "booked",
-    AVAILABLE: "available",
-  },
-  ROLES: {
-    CUSTOMER: "customer",
-    OWNER: "owner",
-  },
+export const HALL_STATUS = {
+  BOOKED: "booked",
+  AVAILABLE: "available",
+};
+
+export const ROLES = {
+  CUSTOMER: "customer",
+  OWNER: "owner",
 };
