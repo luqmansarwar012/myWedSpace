@@ -3,4 +3,8 @@ module.exports = {
     BOOKED: "booked",
     AVAILABLE: "available",
   },
+  ROLES: {
+    CUSTOMER: "customer",
+    OWNER: "owner",
+  },
 };

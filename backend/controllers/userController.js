@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import validator from "validator";
 import dotenv from "dotenv";
 dotenv.config();
+import { ROLES } from "../constants.js";
 
 const createJwtToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
@@ -24,6 +25,13 @@ const signup = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Please enter a strong password!",
+      });
+    }
+    // Validate role to ensure it's either 'customer' or 'owner'
+    if (!Object.values(ROLES).includes(role)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid role! Must be 'customer' or 'owner'.",
       });
     }
     // checking if user with same email already exists
