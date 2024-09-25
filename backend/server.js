@@ -3,6 +3,7 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import dotenv from "dotenv";
+import hallRouter from "./routes/hallRoute.js";
 dotenv.config();
 // App config
 const app = express();
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 
 //Owner endpoints
 app.use("/api/v1/user/", userRouter);
+app.use("/api/v1/hall/", hallRouter);
 
 // Running express server
 app.listen(port, () => {
