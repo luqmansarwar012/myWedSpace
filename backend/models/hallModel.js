@@ -10,6 +10,7 @@ const hallSchema = new mongoose.Schema(
       enum: Object.values(HALL_STATUS),
       default: HALL_STATUS.AVAILABLE,
     },
+    ownerId: { type: mongoose.Types.ObjectId, ref: "User", required: true },
   },
   { minimize: false }
 );

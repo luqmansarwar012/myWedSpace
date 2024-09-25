@@ -13,9 +13,8 @@ const ownerAuth = (req, res, next) => {
   }
   try {
     const extToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("extracted tokenn", token);
-
     if (extToken.role === ROLES.OWNER) {
+      req.user = extToken;
       next();
     } else {
       res.status(401).send({ error: "Unauthorized" });

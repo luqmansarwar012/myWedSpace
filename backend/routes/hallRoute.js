@@ -7,6 +7,6 @@ const hallRouter = express.Router();
 // register hall
 hallRouter.post("/register-hall", ownerAuth, registerHall);
 // add a dish to hall
-hallRouter.post("/add-dish-to-hall/:hallId", ownerAuth, addDishToHall);
+hallRouter.post("/add-dish-to-hall", ownerAuth, addDishToHall);
 
 export default hallRouter;

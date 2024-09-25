@@ -1,17 +1,20 @@
 import hallModel from "../models/hallModel.js";
+import dishModel from "../models/dishModel.js";
+import mongoose from "mongoose";
 
 const registerHall = async (req, res) => {
   const name = req.body.name.toLowerCase();
   const location = req.body.location.toLowerCase();
   const capacity = req.body.capacity;
+  const ownerId = req.user.id;
 
   try {
     // Validate required fields
-    if (!name || !location || !capacity) {
+    if (!name || !location || !capacity || !ownerId) {
       return res.status(400).json({
         success: false,
         message:
-          "Please provide all required fields: name, location, and capacity.",
+          "Please provide all required fields: name, location,owner id and capacity.",
       });
     }
 
@@ -37,6 +40,7 @@ const registerHall = async (req, res) => {
       name,
       location,
       capacity,
+      ownerId,
     });
 
     const createdHall = await hall.save();
@@ -58,6 +62,14 @@ const addDishToHall = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Please provide all required fields: name, price, and hallId.",
+      });
+    }
+
+    // Validate hallId to be a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(hallId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid hallId.",
       });
     }
 
