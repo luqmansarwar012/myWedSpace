@@ -50,11 +50,11 @@ const addDish = async (req, res) => {
 const updateDish = async (req, res) => {
   const { name, description, price, dishId } = req.body;
   try {
-    // Validate hallId to be a valid ObjectId
+    // Validate dishId to be a valid ObjectId
     if (!mongoose.Types.ObjectId.isValid(dishId)) {
       return res.status(400).json({
         success: false,
-        message: "Invalid hallId.",
+        message: "Invalid dishId.",
       });
     }
     // Create an update object with only the fields that are provided
@@ -90,5 +90,34 @@ const updateDish = async (req, res) => {
     });
   }
 };
-
-export { addDish, updateDish };
+const deleteDish = async (req, res) => {
+  const { dishId } = req.params;
+  try {
+    // Validate dishId to be a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(dishId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid dishId.",
+      });
+    }
+    // Delete the dish from the dishes table
+    const deletedDish = await dishModel.findByIdAndDelete(dishId);
+    if (!deletedDish) {
+      return res.status(404).json({
+        success: false,
+        message: "Dish not found.",
+      });
+    } else {
+      res
+        .status(200)
+        .json({ success: true, message: "Dish deleted successfully." });
+    }
+  } catch {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong in deleting dish",
+    });
+  }
+};
+export { addDish, updateDish, deleteDish };
