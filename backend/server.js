@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import dishRouter from "./routes/dishRoute.js";
 import dotenv from "dotenv";
 import hallRouter from "./routes/hallRoute.js";
 dotenv.config();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 //Owner endpoints
 app.use("/api/v1/user/", userRouter);
 app.use("/api/v1/hall/", hallRouter);
+app.use("/api/v1/dish/", dishRouter);
 
 // Running express server
 app.listen(port, () => {
